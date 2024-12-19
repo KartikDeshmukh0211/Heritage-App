@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heritage_app/screens/chatbot.dart';
+import 'package:heritage_app/widget/drawers/homescreen_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,10 +13,12 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 2; // Track the selected tab index
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {},
@@ -43,7 +46,9 @@ class HomeScreenState extends State<HomeScreen> {
             tooltip: "Search",
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer();
+            },
             icon: const Icon(
               Icons.menu,
               size: 28,
@@ -60,8 +65,8 @@ class HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentIndex, // Highlight the selected tab
         onTap: (index) {
           if (index == 0) {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (ctx) =>const ChatbotScreen()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx) => const ChatbotScreen()));
           }
           setState(() {
             _currentIndex = index;
@@ -106,6 +111,7 @@ class HomeScreenState extends State<HomeScreen> {
         showUnselectedLabels: true,
         iconSize: 26,
       ),
+      endDrawer: HomeScreenDrawer(),
     );
   }
 }
