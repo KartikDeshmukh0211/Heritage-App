@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heritage_app/screens/chatbot.dart';
 import 'package:heritage_app/screens/more_feature.dart';
+import 'package:heritage_app/screens/shopping.dart';
 import 'package:heritage_app/widget/drawers/homescreen_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -68,6 +69,10 @@ class HomeScreenState extends State<HomeScreen> {
           if (index == 0) {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (ctx) => const ChatbotScreen()));
+          }
+          if (index == 3) {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (ctx) => ShoppingScreen()));
           }
           if (index == 4) {
             Navigator.of(context).push(
